@@ -112,6 +112,7 @@ img {
 }
 
 .header-link {
+    position: relative;
     padding: 32px 0;
     display: block;
 
@@ -131,6 +132,7 @@ img {
     line-height: 1.14;
     letter-spacing: 0.02em;
     color: var(--main-text-color);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-icon-mail,
@@ -139,6 +141,7 @@ img {
     fill: currentColor;
     width: 16px;
     height: 12px;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .header-icon-tel {
     width: 10px;
@@ -154,7 +157,20 @@ img {
 }
 
 .current {
-    color: #2196F3;
+    color: var(--accent-color);
+}
+
+.current::after {
+    content: ' ';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 4px;
+
+    background-color: var(--accent-color);
+    border-radius: 2px;
 }
 
 /*---------------HERO-----------------*/
@@ -209,6 +225,85 @@ img {
     border: transparent;
     border-radius: 4px;
     cursor: pointer;
+
+    /*transition-property: background-color;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-btn:hover,
+.hero-btn:focus {
+    background-color: var(--main-btn-background);
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    opacity: 1;
+
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 528px;
+    height: 581px;
+
+    opacity: 1;
+
+    background-color: var(--main-background-color);
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.is-hidden .modal {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0;
+}
+
+.modal-btn {
+    position: absolute;
+    display: flex;
+    
+    top: 8px;
+    right: 8px;
+    
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+
+    color: #000000;
+    
+    background-color: var(--main-background-color);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.modal-icon {
+    fill: currentColor;
+    width: 11px;
+    height: 11px;
 }
 
 /*---------------------DETAILS SECTION-------------------*/
@@ -393,6 +488,7 @@ img {
     justify-content: center;
 
     color: var(--icon-color);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .team-social-icon {
@@ -440,6 +536,8 @@ img {
     border: 1px solid var(--icon-color);
     border-radius: 4px;
     color: var(--icon-color);
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .clients-link:hover,
@@ -542,6 +640,8 @@ img {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     color: var(--primary-first-text-color);
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-social-icon {
@@ -587,8 +687,10 @@ img {
     
     border-radius: 4px;
     border-style: none;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     cursor: pointer
+    
 }
 
 .gallery-btn:hover,
@@ -615,19 +717,32 @@ img {
     flex-basis: calc(100% / 3 - 30px);
 }
 
+.gallery-box {
+    position: relative;
+    overflow: hidden;
+}
+
 .gallery-img {
     display: block;
     width: 370px;
     height: 294px;
 }
 
-.gallery-box {
+.gallery-box:hover .gallery-overlay-box
+.gallery-box:focus .gallery-overlay-box {
+    transform: translateY(0);
+}
+
+.gallery-overlay-box {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    opacity: 0;
+    height: 100%;    
+    background-color: rgba(33, 150, 243, 0.9);
+
+    transform: translateY(101%);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);   
 }
 
 .gallery-box-text {
@@ -641,7 +756,7 @@ img {
     letter-spacing: 0.03em;
     
     color: var(--primary-first-text-color);
-    background: rgba(33, 150, 243, 0.9);
+    
 }
 
 .gallery-text-container {
@@ -672,17 +787,20 @@ img {
 .gallery-link {
     display: block;
     color: var(--primary-second-text-color);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 
 .gallery-link:hover,
 .gallery-link:focus {
-
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
         0px 4px 4px rgba(0, 0, 0, 0.06),
         1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
+.gallery-link:hover .gallery-overlay-box,
+.gallery-link:focus .gallery-overlay-box {
+    transform: translateY(0);
+}
 
  
 
